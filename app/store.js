@@ -3,15 +3,19 @@ import Weather from "./models/weather.js";
 let _state = {
   /**@type {Weather} */
   weather: new Weather({ name: "loading", main: { temp: 0.0 } }), //temporary fake data
+  /**@type  */
+  quote: null,
   /**@type {any[]}*/
-  todos: [] //TODO change 'any' to your todo model
+  todos: [], //TODO change 'any' to your todo model
 };
 
 /** Collection of listeners to be called based on keyed state changes
  * @type {{[x:string]: function[]}}
  */
 let _listeners = {
-  weather: []
+  weather: [],
+  quote: [],
+  todos: [],
 };
 
 /**
@@ -63,7 +67,7 @@ class Store {
   commit(prop, data) {
     _validateProp(prop);
     _state[prop] = data;
-    _listeners[prop].forEach(fn => fn());
+    _listeners[prop].forEach((fn) => fn());
   }
 }
 

@@ -1,33 +1,116 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Personal Dashboard</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="assets/css/style.css" />
+  </head>
 
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>Inspire</title>
-	<link rel="stylesheet" href="assets/css/style.css">
-</head>
+  <body id="bg-image">
+    <div id="weather" class="card absolute info-panel">
+      <div id="location"></div>
+      <div><span id="temperature"></span>&#176</div>
+		<div class="btn-group btn-group-toggle" data-toggle="buttons">
+		<label class="btn btn-secondary active">
+			<input type="radio" name="options" id="option1" onclick="app.weatherController.getWeather('F')" checked> F
+		</label>
+		<label class="btn btn-secondary">
+			<input type="radio" name="options" id="option2" onclick="app.weatherController.getWeather('C')" > C
+		</label>
+		<label class="btn btn-secondary">
+			<input type="radio" name="options" id="option3" onclick="app.weatherController.getWeather('K')" > K
+		</label>
+		</div>
+		<div>
+			<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#weather-details" aria-expanded="false" aria-controls="collapseExample">
+				Weather Details
+			</button>
+		</div>
+		<div class="collapse " id="weather-details">
+			<div class="card cardbody element-background">
+				<p>some stuff 1</p>
+				<p>some stuff 2</p>
 
-<body id="bg-image">
-	<div id="weather">
-		Your Weather Template
+			</div>
+		</div>
+    </div>
+
+    <div id="quote" class=" card absolute info-panel">
+	  <blockquote id="quote-text"></blockquote>
+	  <p id="quote-author"></p>
+    </div>
+
+    <div id="clock" class="card absolute info-panel">
+      <p id="clock-text"></p>
+    </div>
+
+    <div id="news" class="absolute border">
+      news stuff
+    </div>
+
+    <div id="stockmarket" class="absolute border">
+      stockmarket stuff
+    </div>
+
+    <div id="todo" class="card absolute info-panel p-0">
+      A Todo List
+      <div id="todo-error"></div>
+		<div id="todos">
+			<div class="my-3 d-flex justify-content-center item-div" >
+				<div class="d-inline task-div align-self-center ">
+					<label class="checkbox-container"id="">
+					<input type="checkbox" class="" >
+					<span class="checkmark" ></span>
+					<span class="item-title">ToDo Item 1</span>
+					</label> 
+				</div>
+			</div>
+			<div class="my-3 d-flex justify-content-center item-div" >
+				<div class="d-inline task-div align-self-center ">
+					<label class="checkbox-container"id="">
+					<input type="checkbox" class="" >
+					<span class="checkmark" ></span>
+					<span class="item-title">ToDo Item 1</span>
+					</label> 
+				</div>
+			</div>
+		</div>
+		<div class="d-flex justify-content-center">
+			<form class="form-inline mx-1 my-1" onsubmit="app.todoController.addTodo(event)" >
+				<div class="">
+					<label for="task"></label>
+					<input type="text" name="description" class="d-inline" placeholder="new task" aria-describedby="new task">
+					<button type="submit" class="d-inline" ><i class="fas fa-plus fa-xs "></i></button>
+				</div>
+			</form>
+		</div>
 	</div>
-
-	<div id="quote">
-		The Quote
-	</div>
-
-	<div>
-		A Todo List
-		<div id="todo-error"></div>
-		<form onsubmit=""></form>
-		<div id="todos"></div>
-	</div>
-
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
-	<script type="module" src="app/main.js"></script>
-</body>
-
+	<script defer src="https://use.fontawesome.com/releases/v5.1.1/js/all.js" integrity="sha384-BtvRZcyfv4r0x/phJt9Y9HhnN5ur1Z+kZbKVgzVBAlQZX4jvAuImlIz+bG7TS00a" crossorigin="anonymous"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+      integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
+    <script type="module" src="app/main.js"></script>
+  </body>
 </html>
-<html>
+<html></html>

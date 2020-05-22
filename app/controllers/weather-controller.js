@@ -6,11 +6,25 @@ import store from "../store.js";
 
 //TODO Complete rendering data to the screen
 function drawWeather() {
-  console.log("THE WEATHER MAN SAYS:", store.State.weather);
+  let weather = store.State.weather;
+
+  document.getElementById("location").innerText = weather.city;
+  let temp = document.getElementById("temperature");
+  if (weather.unit == "F") {
+    temp.innerText = weather.fahrenheit.toString();
+  } else if (weather.unit == "C") {
+    temp.innerText = weather.celsius.toString();
+  } else {
+    temp.innerText = weather.kelvin.toString();
+  }
 }
 export default class WeatherController {
   constructor() {
     store.subscribe("weather", drawWeather);
-    WeatherService.getWeather();
+    this.getWeather("F");
+  }
+
+  getWeather(unit) {
+    WeatherService.getWeather(unit);
   }
 }
