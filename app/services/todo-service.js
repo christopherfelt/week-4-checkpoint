@@ -9,9 +9,7 @@ const _todoApi = axios.create({
 
 class TodoService {
   async getTodos() {
-    console.log("Getting the Todo List");
     let res = await _todoApi.get();
-    console.log(res.data);
     //TODO Handle this response from the server
     let newTodos = res.data.data.map((t) => new Todo(t));
     store.commit("todos", newTodos);
@@ -23,17 +21,23 @@ class TodoService {
     //TODO Handle this response from the server (hint: what data comes back, do you want this?)
   }
 
-  toggleTodoStatusAsync(todoId) {
+  async toggleTodoStatusAsync(todoId) {
     let todo = store.State.todos.find((todo) => todo._id == todoId);
+    todo.completed = !todo.completed;
+    await _todoApi.put(todo._id, todo);
+    this.getTodos();
+
     //TODO Make sure that you found a todo,
     //		and if you did find one
     //		change its completed status to whatever it is not (ex: false => true or true => false)
 
-    todoApi.put(todoId, todo);
+    // todoApi.put(todoId, todo);
     //TODO do you care about this data? or should you go get something else?
   }
 
-  removeTodoAsync(todoId) {
+  async removeTodoAsync(todoId) {
+    await _todoApi.delete(todoId);
+    this.getTodos();
     //TODO Work through this one on your own
     //		what is the request type
     //		once the response comes back, what do you need to insure happens?

@@ -15,7 +15,7 @@
   </head>
 
   <body id="bg-image">
-    <div id="weather" class="card absolute info-panel">
+    <div id="weather" class="card absolute info-panel box">
       <div id="location"></div>
       <div><span id="temperature"></span>&#176</div>
 		<div class="btn-group btn-group-toggle" data-toggle="buttons">
@@ -43,25 +43,37 @@
 		</div>
     </div>
 
-    <div id="quote" class=" card absolute info-panel">
+    <div id="quote" class=" card absolute info-panel box">
 	  <blockquote id="quote-text"></blockquote>
 	  <p id="quote-author"></p>
     </div>
 
-    <div id="clock" class="card absolute info-panel">
+    <div id="clock" class="card absolute info-panel box">
       <p id="clock-text"></p>
-    </div>
+	</div>
+	<div id="username" class="card absolute info-panel box">
+		<h3>Hello <span id="username-entry"></span></h3>
+		<div>
+			<a id="change-name-link" data-toggle="collapse" href="#change-name" role="button" >Change Username</a>
+		</div>
+		<div id="change-name" class="collapse">
+			<form onsubmit="app.usernameController.setUsername(event)">
+				<input type="text" name="newUsername" placeholder="new username">
+				<button type="submit" class="btn btn-primary">Change</button>
+			</form>
+		</div>
+	</div>
 
-    <div id="news" class="absolute border">
+    <!-- <div id="news" class="absolute border box">
       news stuff
     </div>
 
-    <div id="stockmarket" class="absolute border">
+    <div id="stockmarket" class="absolute border box">
       stockmarket stuff
-    </div>
+    </div> -->
 
-    <div id="todo" class="card absolute info-panel p-0">
-      A Todo List
+    <div id="todo" class="card absolute info-panel p-0 box">
+      <h6>A Todo List (Items: <span id="item-count"></span>)</h6>
       <div id="todo-error"></div>
 		<div id="todos">
 			<div class="my-3 d-flex justify-content-center item-div" >
@@ -94,11 +106,8 @@
 		</div>
 	</div>
 	<script defer src="https://use.fontawesome.com/releases/v5.1.1/js/all.js" integrity="sha384-BtvRZcyfv4r0x/phJt9Y9HhnN5ur1Z+kZbKVgzVBAlQZX4jvAuImlIz+bG7TS00a" crossorigin="anonymous"></script>
-    <script
-      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-      crossorigin="anonymous"
-    ></script>
+	    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script
       src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
       integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"

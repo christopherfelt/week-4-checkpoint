@@ -11,7 +11,6 @@ const _quoteApi = axios.create({
 class QuoteService {
   async getQuote() {
     let res = await _quoteApi.get();
-    console.log(res);
     store.commit("quote", new Quote(res.data.quote));
   }
 }

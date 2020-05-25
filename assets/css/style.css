@@ -9,6 +9,8 @@ body {
 
 #bg-image {
   background-image: url("/assets/mountain.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 /* utilities */
 .absolute {
@@ -37,7 +39,7 @@ body {
 
 #todo {
   top: 600px;
-  right: 100px;
+  left: 500px;
   height: auto;
   width: 250px;
 }
@@ -49,11 +51,27 @@ body {
   width: 400px;
 }
 
+#quote-author {
+  opacity: 0.1;
+  transition-duration: 0.25s;
+}
+
+#quote-author:hover {
+  opacity: 1;
+}
+
 #clock {
   top: 350px;
   right: 550px;
   height: 40px;
   width: 400px;
+}
+
+#username {
+  top: 400px;
+  right: 600px;
+  width: 400px;
+  height: auto;
 }
 
 #news {

@@ -4,9 +4,11 @@ import store from "../store.js";
 //TODO Create the render function
 function _drawTodos() {
   let todos = store.State.todos;
+  let todoCount = todos.length;
   let template = "";
   todos.forEach((t) => (template += t.Template));
   document.getElementById("todos").innerHTML = template;
+  document.getElementById("item-count").innerText = todoCount.toString();
 }
 
 export default class TodoController {

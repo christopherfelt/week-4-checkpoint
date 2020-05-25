@@ -1,12 +1,22 @@
 import Weather from "./models/weather.js";
+import Quote from "./models/quote.js";
+import Image from "./models/image.js";
+import Username from "./models/username.js";
+import Layout from "./models/coordinates.js";
 
 let _state = {
   /**@type {Weather} */
   weather: new Weather({ name: "loading", main: { temp: 0.0 } }), //temporary fake data
-  /**@type  */
+  /**@type {Quote} */
   quote: null,
+  /**@type {Image} */
+  image: new Image({
+    large_url: "/assets/mountain.jpg",
+  }),
   /**@type {any[]}*/
   todos: [], //TODO change 'any' to your todo model
+  username: null,
+  coordinates: [],
 };
 
 /** Collection of listeners to be called based on keyed state changes
@@ -16,6 +26,8 @@ let _listeners = {
   weather: [],
   quote: [],
   todos: [],
+  image: [],
+  username: [],
 };
 
 /**
@@ -45,6 +57,7 @@ class Store {
   /**
    * Provides access to application state data
    */
+
   get State() {
     return _state;
   }
@@ -69,7 +82,30 @@ class Store {
     _state[prop] = data;
     _listeners[prop].forEach((fn) => fn());
   }
+
+  saveLocalStorage() {
+    let inspiration = {
+      username: _state.username,
+      coordinates: _state.coordinates,
+    };
+    localStorage.setItem("Inspiration", JSON.stringify(inspiration));
+  }
+
+  loadLocalStorage() {
+    let data = JSON.parse(localStorage.getItem("Inspiration"));
+    console.log("from load", data);
+    if (data.username) {
+      store.commit("username", new Username(data.username));
+    }
+    console.log("from load", data.coordinates);
+    if (data.coordinates) {
+      let coordinates = data.coordinates.map((c) => new Layout(c));
+      this.State.coordinates = coordinates;
+    }
+  }
 }
 
 const store = new Store();
 export default store;
+
+store.loadLocalStorage();
