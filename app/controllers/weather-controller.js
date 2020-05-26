@@ -9,6 +9,8 @@ function drawWeather() {
   let weather = store.State.weather;
 
   document.getElementById("location").innerText = weather.city;
+  document.getElementById("weather-description").innerText =
+    weather.description;
   let temp = document.getElementById("temperature");
   if (weather.unit == "F") {
     temp.innerText = weather.fahrenheit.toString();

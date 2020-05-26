@@ -3,10 +3,11 @@ import Quote from "./models/quote.js";
 import Image from "./models/image.js";
 import Username from "./models/username.js";
 import Layout from "./models/coordinates.js";
+import Clock from "./models/clock.js";
 
 let _state = {
   /**@type {Weather} */
-  weather: new Weather({ name: "loading", main: { temp: 0.0 } }), //temporary fake data
+  weather: null, //temporary fake data
   /**@type {Quote} */
   quote: null,
   /**@type {Image} */
@@ -17,6 +18,8 @@ let _state = {
   todos: [], //TODO change 'any' to your todo model
   username: null,
   coordinates: [],
+  clockType: null,
+  layoutType: null,
 };
 
 /** Collection of listeners to be called based on keyed state changes
@@ -28,6 +31,8 @@ let _listeners = {
   todos: [],
   image: [],
   username: [],
+  clockType: [],
+  layoutType: [],
 };
 
 /**
@@ -87,20 +92,32 @@ class Store {
     let inspiration = {
       username: _state.username,
       coordinates: _state.coordinates,
+      clockType: _state.clockType,
+      layoutType: _state.layoutType,
     };
     localStorage.setItem("Inspiration", JSON.stringify(inspiration));
   }
 
   loadLocalStorage() {
     let data = JSON.parse(localStorage.getItem("Inspiration"));
-    console.log("from load", data);
+    // console.log("from load", data);
     if (data.username) {
       store.commit("username", new Username(data.username));
     }
-    console.log("from load", data.coordinates);
+    // console.log("from load", data.coordinates);
     if (data.coordinates) {
       let coordinates = data.coordinates.map((c) => new Layout(c));
       this.State.coordinates = coordinates;
+    }
+    // console.log("from load", data.clockType);
+    if (data.clockType) {
+      let clockType = new Clock(data.clockType);
+      this.State.clockType = clockType;
+    }
+    console.log("from load", data.layoutType);
+    if (data.layoutType) {
+      let layoutType = data.layoutType;
+      store.commit("layoutType", layoutType);
     }
   }
 }

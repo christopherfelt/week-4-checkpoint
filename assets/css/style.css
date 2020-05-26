@@ -32,21 +32,21 @@ body {
 /* specific */
 
 #weather {
-  top: 30px;
-  right: 10px;
+  /* top: 30px;
+  right: 10px; */
   width: 200px;
 }
 
 #todo {
-  top: 600px;
-  left: 500px;
+  /* top: 600px;
+  left: 500px; */
   height: auto;
   width: 250px;
 }
 
 #quote {
-  top: 40px;
-  right: 550px;
+  /* top: 40px;
+  right: 550px; */
   height: auto;
   width: 400px;
 }
@@ -61,31 +61,21 @@ body {
 }
 
 #clock {
-  top: 350px;
-  right: 550px;
-  height: 40px;
-  width: 400px;
-}
-
-#username {
-  top: 400px;
-  right: 600px;
+  /* top: 350px;
+  right: 550px; */
   width: 400px;
   height: auto;
 }
 
-#news {
-  top: 225px;
-  left: 0;
-  height: 300px;
-  width: 200px;
+#username {
+  /* top: 400px;
+  right: 600px; */
+  width: 400px;
+  height: auto;
 }
 
-#stockmarket {
-  top: 225px;
-  right: 0;
-  height: 300px;
-  width: 200px;
+#theme-controls {
+  width: auto;
 }
 
 /* borrowed from  https://jsfiddle.net/cras6ybg/*/

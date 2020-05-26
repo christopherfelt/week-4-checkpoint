@@ -12,11 +12,11 @@ function _drawQuotes() {
 
 export default class QuoteController {
   getQuote() {
-    store.subscribe("quote", _drawQuotes);
     QuoteService.getQuote();
   }
 
   constructor() {
+    store.subscribe("quote", _drawQuotes);
     this.getQuote();
   }
 }

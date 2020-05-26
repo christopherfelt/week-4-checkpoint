@@ -2,6 +2,10 @@ import store from "../store.js";
 import Layout from "../models/coordinates.js";
 
 class LayoutService {
+  setLayoutType(layoutType) {
+    store.commit("layoutType", layoutType);
+    store.saveLocalStorage();
+  }
   setCoodinates(data) {
     console.log("layout-service", data);
     let coorSet = store.State.coordinates.find((c) => c.id == data.id);

@@ -11,5 +11,6 @@ export default class Weather {
     this.fahrenheit = Math.round((data.main.temp - 273.15) * (9 / 5) + 32);
     this.celsius = Math.round(data.main.temp - 273.15);
     this.unit = data.unit || "F";
+    this.description = data.weather[0].description;
   }
 }
